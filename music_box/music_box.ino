@@ -1,7 +1,8 @@
 /*
 B. MAUBERT
+
 Revue 2016/10/18.
-Une bonne partie du code est inspirée de 
+Une partie du code est inspirée de 
   Melody
  
  Plays a melody
@@ -20,16 +21,27 @@ Improved by Bertrand Maubert, 2102 : another Music ("petit Papa").
 Use a 2-dimensions array allowing to indicate simultaneously the note/tune and its duration.
 Use function sizeof to determine the size of the song.
 
-TODO : the array contains only floats although the lenght ot the notes could be integer.
-A améliorer : mon tableau est composé entièrement de nombres flotants, alors que la hauteur des notes est contituées de nombres entiers. Cela est 
-nécessaire pour un bon fonctionnement de la durée des notes, mais il en résulte un gaspillage de place.
+TODO : the array contains only floats although the lenght ot the notes could be 
+integer.
+
+A améliorer : mon tableau est composé entièrement de nombres flotants, alors que 
+la hauteur des notes est contituées de nombres entiers. Cela est 
+nécessaire pour un bon fonctionnement de la durée des notes, mais il en résulte 
+un gaspillage de place.
+
 air_petit_papa_2 : utilise correctement un array
 projet : faire en sorte que la fonction playMusic attende une référecne à un tableau.
 air_petit_papa_3 : la fonction playMusic attend un tableau, sa taille et la vitesse.
-deux_musiques_2 : joue de façon aléatoire une des deux chansons. OK le 1 oct 2012
+deux_musiques_2 : joue de façon aléatoire une des deux chansons. 
+
 trois_musiques : j'ajoute à la claire fonctaine.  J'ajoute trois LED qui clignottent en fonction du rythme. OK le 18 nov 2012.
 trois_musiques_nov_2012 : pendant l'exécution d'une musique, l'appuie sur le bouton ne fait plus rien. A la fin de la musique, extinction de la LED.
-trois_musiques_quatre_boutons : j'ai ajouté 3 autres boutons. Au total, il y a quatre boutons :
+trois_musiques_quatre_boutons : j'ai ajouté 3 autres boutons.
+sept 2017 : ajout d'un clignotement quand la boite ne joue pas de musique. 
+
+Principes : 
+
+quatre boutons :
 
 Numérotation des boutons et led : 
 Nom du bouton     | Couleur | pin arduino  | fonction 
@@ -46,8 +58,15 @@ l'autre musique est lancée. Si au cours de l'exécution d'une musique on appuie
 le bouton de la meme musique, celle-ci s'arrête. Pour ces 2 deux dernières lignes, 
 l'appuie sur le bouton n'est pris en compte qu'après quelques notes jouées (ce qui résoud le 
 problème de la répétition des touches).
-trois_musiques_avec_sleep_mode : Après 20 secondes d'inactitivé, le Arduino passe en mode sleep. 
-Il en sort quand on appuie sur le bouton JAUNE (pin 2).
+- Après 20 secondes d'inactitivé, le Arduino passe en mode sleep. 
+Il en sort quand on appuie sur le bouton JAUNE (pin 2). Le mode sleep de diminuer
+la consommation du microprocesseur. Cette possibilité est intéressante pour un micro
+processeur utilisé sans Arduino. Avec le dispositif Arduino, la consommation ne peut
+pas tre réduite de façon significative parce que l'alimentation reste toujours 
+active, meme si le CPU est en veille. 
+- Pour que l'utilisateur pense à éteindre la boite à musique j'ai donc ajouté un 
+clignotement de LED quand la boite est sous tension mais ne joue pas de musique. 
+
 
 prévu  2017 : Faire en sorte qu'une des LED clignote de façon intermitente
  en absence de musique. Cela servira d'indicateur de mise en tension. 
